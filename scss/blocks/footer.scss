@@ -1,0 +1,120 @@
+.footer {
+  padding-top: 47px;
+  padding-bottom: 47px;
+  border-radius: 33px 33px 0 0;
+  background-color: #fff;
+
+  @media screen and (max-width: 1079px) {
+    padding-top: 40px;
+    padding-bottom: 72px;
+    background-color: #000;
+    border-radius: 0;
+  }
+}
+
+.footer__container {
+  width: min(1540px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 27px;
+  padding-right: 27px;
+  display: flex;
+  gap: 108px;
+
+  @media screen and (max-width: 1279px) {
+    justify-content: center;
+  }
+  @media screen and (max-width: 540px) {
+    gap: 10px;
+  }
+
+  h3 {
+    font-weight: 700;
+    font-size: 32px;
+    color: #090909;
+
+    @media screen and (max-width: 1079px) {
+      font-size: 13px;
+      color: #fff;
+    }
+  }
+}
+
+.footer__title {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 32px;
+  color: #090909;
+
+  @media screen and (max-width: 1079px) {
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #fff;
+  }
+
+  &::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #593eff;
+
+    @media screen and (max-width: 1079px) {
+      display: none;
+    }
+  }
+}
+
+.footer__navigation,
+.footer__socials,
+.footer__buy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 32px;
+  color: #090909;
+
+  @media screen and (max-width: 1079px) {
+    font-size: 13px;
+    color: #fff;
+  }
+
+  li,
+  a {
+    width: fit-content;
+    position: relative;
+    &:before {
+      content: "";
+      width: 0;
+      height: 2px;
+      background-color: #000;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transition: all 200ms ease;
+
+      @media screen and (max-width: 1079px) {
+        background-color: #fff;
+      }
+    }
+
+    &:hover {
+      &:before {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+.footer__socials,
+.footer__buy {
+  a {
+    @media screen and (max-width: 1079px) {
+      margin-top: 8px;
+    }
+  }
+}

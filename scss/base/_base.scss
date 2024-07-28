@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+@font-face {
+  font-family: "Century Gothic";
+  src: url("../public/fonts/centurygothic.ttf");
+}
+@font-face {
+  font-family: "Century Gothic Bold";
+  src: url("../public/fonts/centurygothic_bold.ttf");
+}
+@font-face {
+  font-family: "Benzin-Bold";
+  src: url("../public/fonts/benzin-bold.otf");
+}
+
+:root {
+  --font-family: "Montserrat", sans-serif;
+  --second-family: "Century Gothic", sans-serif;
+  --second-family-bold: "Century Gothic Bold", sans-serif;
+  --third-family: "Benzin-Bold", sans-serif;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  color: #fff;
+  background-color: #593eff;
+}
+
+.tooltip {
+  width: 341px;
+  height: 50px;
+  border-radius: 30px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  translate: -50% 0;
+  opacity: 0;
+  display: none;
+  transition: all 400ms ease;
+  z-index: 21;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #060606;
+  font-weight: 600;
+
+  span {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    translate: -21px 0;
+  }
+
+  svg {
+    margin-left: 23px;
+  }
+}
+
+.tooltip.visible {
+  display: flex;
+  animation: tooltip-show 400ms linear forwards;
+}
+
+@keyframes tooltip-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

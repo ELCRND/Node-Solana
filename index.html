@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Solana</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header__container">
+            <nav class="header__navigation">
+                <ol>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#specification">Specification</a></li>
+                    <li><a href="#buy">How to buy</a></li>
+                </ol>
+            </nav>
+
+            <div class="header__socials">
+                <a href="#" aria-label="dextools">
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="680 340 50 880.3" width="45" height="30" xml:space="preserve"
+                        fill="#fff">
+                        <path d="M699,766.5v102.4h36.2c19.9,0,40.7-0.6,46.1-1.2c44.7-5.5,77.7-32.6,88.3-72.4c3.5-13.2,4.3-36.4,1.8-50.2
+c-5.1-26.8-19-48.4-40.4-63c-9.6-6.6-18.2-10.2-32-14c-10.8-2.9-12.5-2.9-55.5-3.5l-44.4-0.5V766.5z M778,705.9
+c28.1,6,46.8,29.5,46.8,58.9c-0.1,19.5-6.1,36.3-17.3,47.4c-11.1,11.2-27.6,16.6-50.6,16.7H746v-62.3v-62.3h12.1
+C764.7,704.3,773.6,705.1,778,705.9z" />
+                        <path d="M888.3,766.6v102.3l86.2-0.1h86.1l22.2-31.2c12.3-17,22.6-31,22.9-31c0.5,0,10.8,14,23,31.2l22.3,31.2h28
+c15.3,0,27.9-0.4,27.9-0.7c0-0.4-16.5-23.4-36.4-51.1l-36.4-50.4l34.8-48.6c19.2-26.6,35.9-49.5,37-50.8c2.2-2.2,2.2-1.9,2.2,18.6
+v20.8h21.2h21.2v81.1v81.1h25.3h25.3v-81.1v-81.1l24.7-0.2l24.6-0.4l-13.2-20.8l-13.2-20.8l-86.4-0.1h-86.5l-22.2,31.2
+c-12.3,17-22.6,31-22.9,31.2c-0.4,0-10.7-14-22.9-31.2l-22.3-31.2h-86.1h-86.2V766.6z M1040.4,715.4c19.8,27.4,36,50.4,36,51.1
+c0,0.7-16.2,23.9-36.1,51.5l-36.2,50.2l-0.4-19.6l-0.2-19.6h-34.1h-34.1V806v-22.9h27.6h27.6v-19.4v-19.4h-27.6h-27.6v-20v-20h34.1
+h34.1v-19.4c0-10.7,0.2-19.4,0.5-19.4C1004.3,665.5,1020.6,688,1040.4,715.4z" />
+                        <path d="M342,528.5c-32,16.7-58.3,30.8-58.2,31.4c0,1.5,76.9,40.4,79.6,40.3c1.2,0,10.2-4.2,20-9.2l17.8-9.1l19.4,10
+        l19.4,10l31.8-14.3c47.8-21.5,52.8-23.9,52-24.6c-1-1.1-18.2-10.3-64.8-34.8c-22.5-11.8-44.3-23.5-48.5-25.8
+        c-4.2-2.4-8.2-4.2-8.9-4.2S374,511.8,342,528.5z M201.5,601.3l-33.4,17.2v75.6c0,41.6,0.4,75.6,1,75.6c0.5,0,16.9-7.1,36.5-15.8
+        l35.5-15.8v-79.7l17.3,9.4c13.4,7.3,26.7,14.5,40.1,21.8l22.8,12.3l10.1-4.6c6.4-2.9,12.7-5.8,19-8.7c4.9-2.3,16.9-7.7,26.7-12
+        c9.8-4.3,18.8-8.7,20.1-9.7c1.7-1.3-19.1-12.8-76.9-42.5c-43.6-22.4-80.7-40.6-82.4-40.5C236.2,584,219.8,591.8,201.5,601.3z
+         M529.7,606.1c-22.7,10.3-41.3,19.1-41.3,19.6c0,0.5,12.4,7.9,27.5,16.4c15.2,8.5,27.5,15.9,27.5,16.5c0,0.6-13.4,7.1-29.8,14.4
+        c-16.4,7.4-57.8,26.1-92.1,41.6l-114.7,51.9c-28.9,13-54.9,24.8-57.8,26.1c-58.9,26.7-75.2,34.1-77.4,35.4c-2.2,1.3-2.7,8.7-3.1,46
+        l-0.5,44.5l29.8,15.2l29.8,15.2l41.4-18.7c22.7-10.3,41.4-19.2,41.4-19.9c0-0.7-4.2-3.4-9.3-6.1c-5.1-2.7-15.7-8.7-23.6-13.3
+        c-7.8-4.6-15.6-8.8-17.3-9.4c-1.7-0.6-3.1-1.5-3.1-2.2c0-0.6,18.2-9.3,40.5-19.2c43.2-19.3,76.2-34.2,147.1-66.3
+        c31.7-14.3,63.4-28.7,95.2-43c27.9-12.6,60.3-27.3,72-32.7l21.3-9.8l0.5-45l0.5-45L604,602.9c-16.6-8.5-30.9-15.5-31.6-15.5
+        C571.6,587.4,552.4,595.9,529.7,606.1z M625.2,768.5c-4.5,2.2-13.3,6.3-19.6,9.1c-6.3,2.8-18.3,8.2-26.6,12l-15.1,6.9l-0.3,39.5
+        c-0.2,21.7-1,39.4-1.8,39.3c-1.8-0.3-30.1-14.8-58.6-30.1c-20.6-11-21.9-11.5-26.7-9.1c-2.8,1.4-19.5,8.9-37.1,16.6
+        c-17.6,7.8-32.6,14.6-33.3,15.3c-0.7,0.6,34.7,19.8,78.8,42.7l80,41.6l34.2-17.7c18.8-9.7,34.8-18.6,35.5-19.7
+        c1.7-2.5,1.5-150.7-0.1-150.5C633.8,764.5,629.6,766.3,625.2,768.5z M435.8,942.4c-5.9,2.5-11.9,5.1-17.8,7.7
+        c-17.9,7.7-14.4,8-35.7-2.6c-14.2-7.1-20.3-9.2-23-8.2c-2,0.8-19.1,8.5-38.1,17.1c-18.9,8.6-35.1,15.7-35.9,15.7
+        c-8,0,5.3,7.9,56.3,33.6l59.8,30.2l25.2-12.4c13.8-6.8,41.8-20.5,62-30.4c20.3-9.9,36.6-18.2,36.3-18.6c-0.3-0.3-17.3-9-37.8-19.4
+        l-37.2-18.8L435.8,942.4z" />
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="telegram">
+                    <svg width="31" height="31" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_498)">
+                            <path
+                                d="M37.0406 18.5203C37.0406 28.7528 28.7528 37.0406 18.5203 37.0406C8.28783 37.0406 0 28.7528 0 18.5203C0 8.28783 8.28783 0 18.5203 0C28.7528 0 37.0406 8.28783 37.0406 18.5203Z"
+                                fill="url(#paint0_linear_1_498)" />
+                            <path
+                                d="M15.1245 27.0088C14.5226 27.0088 14.6307 26.7773 14.4146 26.2062L12.6552 20.4032L23.5821 13.5815L24.8631 13.9211L23.7982 16.8226L15.1245 27.0088Z"
+                                fill="#000" />
+                            <path
+                                d="M15.1248 27.0088C15.5878 27.0088 15.7884 26.7927 16.0508 26.5457C16.452 26.1599 21.6069 21.144 21.6069 21.144L18.443 20.3723L15.5106 22.2243L15.1248 26.8544V27.0088Z"
+                                fill="#fff" />
+                            <path
+                                d="M15.4335 22.2862L22.9034 27.796C23.7522 28.259 24.3696 28.0275 24.5856 27.0089L27.626 12.6866C27.9347 11.4364 27.1476 10.8808 26.3296 11.2512L8.4884 18.1346C7.26915 18.6285 7.28458 19.3076 8.27233 19.6008L12.8561 21.0361L23.459 14.3534C23.9528 14.0447 24.4159 14.2145 24.0455 14.554L15.4335 22.2862Z"
+                                fill="url(#paint1_linear_1_498)" />
+                        </g>
+                        <defs>
+                            <linearGradient id="paint0_linear_1_498" x1="23.9483" y1="5.85396" x2="14.6881" y2="27.4607"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#000" />
+                                <stop offset="1" stop-color="#000" />
+                            </linearGradient>
+                            <linearGradient id="paint1_linear_1_498" x1="19.9079" y1="19.1" x2="23.7663" y2="25.2734"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#fff" />
+                                <stop offset="1" stop-color="#fff" />
+                            </linearGradient>
+                            <clipPath id="clip0_1_498">
+                                <rect width="37.0406" height="37.0406" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="twitter">
+                    <svg width="31" height="31" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_1_503)">
+                            <path d="M13.3567 9.53247L26.6983 27.3675H23.6779L10.3372 9.53247H13.3567Z" fill="white" />
+                            <path d="M26.6983 27.3675H23.6779L10.3372 9.53247H13.3567L26.6983 27.3675Z" fill="#000" />
+                            <path
+                                d="M31.394 5.54672C28.092 2.24548 23.5306 0.203613 18.4915 0.203613C8.41338 0.203613 0.244385 8.37261 0.244385 18.4507C0.244385 23.4898 2.28625 28.0512 5.58749 31.3532C8.89105 34.656 13.4524 36.6979 18.4915 36.6979C23.5306 36.6979 28.092 34.656 31.394 31.3532C34.6968 28.0512 36.7386 23.4898 36.7386 18.4507C36.7386 13.4117 34.6968 8.85028 31.394 5.54672ZM22.9649 28.792L16.891 20.6716L9.37412 28.792H7.44183L16.0283 19.5172L7.49508 8.10869H14.0713L19.6645 15.5878L26.5872 8.10869H28.5195L20.528 16.7422L29.5412 28.792H22.9649Z"
+                                fill="#000" />
+                            <path
+                                d="M20.5278 16.7424L28.5193 8.10889H26.587L19.6643 15.588L14.0711 8.10889H7.4949L16.0281 19.5174L7.44165 28.7922H9.37393L16.8909 20.6718L22.9647 28.7922H29.541L20.5278 16.7424ZM10.337 9.53263H13.3566L26.6981 27.3677H23.6778L10.337 9.53263Z"
+                                fill="#fff" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_1_503">
+                                <rect width="37.0406" height="37.0406" fill="white" transform="translate(0.0405273)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </a>
+
+                <a href="#" aria-label="dex screener">
+                    <img src="public/img/header/dex_screener.png" alt="" width="30" height="30">
+                </a>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- HOME -->
+    <section class="home" id="main">
+
+        <picture>
+            <source media="(max-width:768px)" srcset="public/img/home/logo.png" width="40" height="40">
+            <img src="public/img/home/logo.png" alt="" class="home__logo" width="106" height="106">
+        </picture>
+
+        <h1 class="home__title">NODE FOR SOLANA</h1>
+
+        <p class="home__description">
+            Empower Your Investments with Node For Solana: Where Innovation Meets Opportunity
+        </p>
+
+        <div class="home__token">
+            <span class="token__code">CONTRACT</span>
+            <button type="button" class="token__copy">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="36" height="36" fill="url(#pattern0_79_5)" />
+                    <defs>
+                        <pattern id="pattern0_79_5" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_79_5" transform="scale(0.0078125)" />
+                        </pattern>
+                        <image id="image0_79_5" width="128" height="128"
+                            xlink:href="data:image/png;base64,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" />
+                    </defs>
+                </svg>
+            </button>
+        </div>
+
+        <div class="home__links">
+            <a href="javascript:void(0)">Buy token</a>
+            <a href="javascript:void(0)">Join telegram</a>
+            <a href="javascript:void(0)">Dexttols</a>
+        </div>
+
+        <img src="public/img/home/home_img.png" alt="" class="home__img" width="979" height="400">
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <div class="about__conatainer">
+
+            <div class="about__site-map">
+                <span>Node Solana</span>
+                <div></div>
+                <span>About</span>
+            </div>
+
+            <div class="about__wrap">
+
+                <div>
+                    <h2 class="about__title">About</h2>
+                    <p class="about__description">
+                        Node For Solana is a revolutionary blockchain project designed to optimize your investment
+                        potential. Our unique $NODE token, built on the high-performance Solana blockchain, offers
+                        unparalleled speed and efficiency.
+                    </p>
+                    <a href="javascript:void(0)" class="about__btn">Read more</a>
+                </div>
+
+
+
+                <div class="about__img">
+                    <img src="public/img/about/about_img.png" alt="" width="629" height="692">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SPEC -->
+    <section class="spec" id="specification">
+
+        <div class="spec__container">
+
+            <div class="spec__site-map">
+                <span>Specifications</span>
+                <div></div>
+                <span>Node Solana</span>
+            </div>
+
+            <h2 class="spec__title">Specifications</h2>
+
+            <ul class="spec__list">
+
+                <li>
+                    <h3>Memory</h3>
+                    <picture>
+                        <source media="(max-width:768px)" srcset="public/img/spec/memory_icon.png" width="45"
+                            height="15">
+                        <img src="public/img/spec/memory_icon.png" alt="" width="75" height="39" loading="lazy">
+                    </picture>
+                    <span>12GB LPDDR5 + 256GB UFS 3.1</span>
+                </li>
+
+                <li>
+                    <h3>Wireless</h3>
+                    <picture>
+                        <source media="(max-width:768px)" srcset="public/img/spec/wireless_icon.png" width="23"
+                            height="19">
+                        <img src="public/img/spec/wireless_icon.png" alt="" width="51" height="41" loading="lazy">
+                    </picture>
+                    <span>WIFI6 2T2R + BT5.2</span>
+                </li>
+
+                <li>
+                    <h3>Chip</h3>
+                    <picture>
+                        <source media="(max-width:768px)" srcset="public/img/spec/chip_icon.png" width="22" height="22">
+                        <img src="public/img/spec/chip_icon.png" alt="" width="48" height="48" loading="lazy">
+                    </picture>
+                    <span>Qualcomm® Snapdragon™ 865</span>
+                </li>
+
+                <li>
+                    <h3>Network Port</h3>
+                    <picture>
+                        <source media="(max-width:768px)" srcset="public/img/spec/port_icon.png" width="20" height="22">
+                        <img src="public/img/spec/port_icon.png" alt="" width="31" height="34" loading="lazy">
+                    </picture>
+                    <span>1000M GE LAN</span>
+                </li>
+
+            </ul>
+
+            <img src="public/img/spec/spec_img.png" alt="" class="spec__img" loading="lazy">
+
+        </div>
+
+    </section>
+
+
+    <!-- BUY -->
+    <section class="buy" id="buy">
+
+        <div class="buy__container">
+
+            <div class="buy__site-map">
+                <span>How to buy</span>
+                <div></div>
+                <span>Node Solana</span>
+            </div>
+
+            <h2 class="buy__title">How to buy</h2>
+
+            <ol class="buy__list">
+
+                <li>
+                    <h3>
+                        <span>Set Up a Wallet</span>
+                        <svg width="35" height="37" viewBox="0 0 35 37" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect x="0.258362" width="34.4846" height="36.4" fill="url(#pattern0_79_26)" />
+                            <defs>
+                                <pattern id="pattern0_79_26" patternContentUnits="objectBoundingBox" width="1"
+                                    height="1">
+                                    <use xlink:href="#image0_79_26"
+                                        transform="matrix(0.0202989 0 0 0.0192308 -0.00747287 0)" />
+                                </pattern>
+                                <image id="image0_79_26" width="50" height="52"
+                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA0CAYAAADIZmusAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEtElEQVRogdWaW2hcRRzGf7tpY1GRYLAXtWFTa6ukoqlpKfQlpRVbUaQ0lMQHKfogeMF6ASFQ8xAvlIIPIt7QVhH0oYiClbZaTKtCoRSrVYum4NqrwQvxwd6StJ8Ps2tmJ3N2Z09mk/jBwJlz/vP9/9+cOXPmlpFEJCwClgNtwI3AdUAjcCWQBc4AeWAQOAnsBvqBAzGcZ8YpZCmwDugEmlJyHAW+Al4BDqWORFKa1C6pT/HxpaR70sRUbYGWKgVcknRO0oUqBX0qKVdNbKFNaxrwBPBC4dqHv4FvgI+AgcL1AHC28Hw6MB/IAQuA1cAyoCGpsQA9QG9IgCFqmyTtL1PjfZLWS5pRTQ0W0nRJayXtKfN2Doe8nUqO5knKJzjYKWlpiuCT0g2S3k/wlZfUnFbIfEknPKSnJa2IKMBNaxMq77ikBdUKyUk65iHbIWlmDUUU01xJnyWI8TYzH8nshBp5eQIEuOklTxw/S2oIEfKhp3DPJIgopl5PPLsqCXnKU6h3EkUU0xueuB5PEpKT+ZBtHJoCIpCUkfnr2xiUdLVPyFbH8DdV+Xf1pKykTkldEcTkCsHbeMsV0qyxeDCC89csvvci8D3mxDgi6SZbyJuOQX8Ep0g6Y3H+E4nzOyfWLUUhsySddB6uj+R0yOIcisS5zol1UFJDRlIHsN0afuWBeUEDtcoYwgwWAYaB+ki8p4E5Vr4zCzzgGL0TyVkt8bqT78gCtzg3d05QMOPBJ05+ZUaSPSHpBxZGdFirpgVwAri+mMk6D49FdFRrlCxauEL2T2Ag48URO+NOW38MJJmGWTmZXcGuzrrOAk9XsD+O6UFD5t8/leScPrk9sC9/VbXD24Ex3GEXcptW6CLXhkC7NOgKtBu2M66QTCDJ7kC7NPggTSH3G2kMLNcF3A9cW8FuE6OVdRF4roL9H8C2wBguL8k57fPRwPY5mWOtYtpY7hu5NbA2pgLa7IwrpI3/D0oWzTOShhn9VoaAWZjlzxio1RClCfiV0c5JWeBby6AeWBXJWS2xjNIe9ussY0eSj0xcPKnxsJPflZG0CPjeunkRWAwcjuCwFk0rh5n82WjJAj8A+6ybdcDGCA6h9O87Eolzk5PfBxwp9slrnP/JBUmLI/T1H1uc70bg8632dEil61oHHIO9ERxnJW2Q9JCkyyLwHXRi/G+1xzZa4VHbHcF5rNTjie9enxBktg1sjEhaPgVELPGI2G7buAXmaOyy5O8yu0mTJaJZ0iknpryc5VxfwZUe9XlJN0+CiNvk33C607VNIuj2FD4r6b4JFHGXxrYOSXrWZ1+OqMdDIkkvSqqroYAZMrtjPvQklatEmiQmL2l1DUS0y+zJ+PB8ubIh5N2ShhPI+yIIykhapeQTFefl7E6lFYKkViXvt6vwbKtMjTYG8DXIfAObJQ2U4T2qwL38ak4HzQSeBJ6pYHcJOIg5uvEn8BdmyH0FcA0wF3MMKukoCJiB6xZgM6Fzo8A3YqdmmZ9RrfC5pNurjWs8bXuhpG3yd5HVYlBm0a81bTzjPXgGZr6xBrgbWAK0MDoHScJ54BSwA/gC2MPoKaJUiCHERT3Qilnzusp5NoKZWv8CnIvp9F/Bff/fPQuzQgAAAABJRU5ErkJggg==" />
+                            </defs>
+                        </svg>
+                    </h3>
+                    <p>
+                        Download and install a Solana-compatible wallet such as Phantom or Sollet. Create a new wallet
+                        or import an existing one.
+                    </p>
+                </li>
+
+                <li>
+                    <h3>
+                        <span>Acquire SOL</span>
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect x="0.335938" width="34.4846" height="35" fill="url(#pattern0_79_31)" />
+                            <defs>
+                                <pattern id="pattern0_79_31" patternContentUnits="objectBoundingBox" width="1"
+                                    height="1">
+                                    <use xlink:href="#image0_79_31"
+                                        transform="matrix(0.0202989 0 0 0.02 -0.00747284 0)" />
+                                </pattern>
+                                <image id="image0_79_31" width="50" height="50"
+                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD40lEQVRoge2ZXWiXVRzHP/tvFAi6mZhZUROVoK4CKw2lTIUhQRDeVIxdLUJJ66KMQWVGWhdRFr1eFEkkZHRRpEXF1KiLskIyltKLGlZCss0pWY59ujjn2f/sv5f/VnPPM9gXDuec3/M95/l9OS+/c54HlZzS9ep76gm1R21X1/zX/vIQMEfdpvY5NB4oupBp6r1qZ+L0d+oGtVndH21/qdcWVcjK6HSGTrVNLSWc25LnnxZNyHz1AwfiJbUh4Vypfuxg3FIEITPUJ9TuxLHP1KUJZ7r6tNpVwfk2ljsiJzchzeqviXPH1ZbkeZ16h3qsgtMcn9+Q2O/LQ8iN6r7EiVPqFsPoZJzF6t6E06NudeBUW2TYkjWspYsnSkiD+rwDsVtdUMF5oYLzkWF9pJyXHYxnzreQGsPO05m89Ht1VRVOh7q8oq+HKjgH1ddjuVe95nwJWa0eTl7caYgHKadJPVTBWVfBWaX+nHC6DbGmxrCWfor29vEWMs8wJTL0GaL0JQmnUf0w4ZyNnLkJZ6G6K+GcM0zPWRXvuz3hrBgPIQ3qJkPUzdBu2GFSzuPqmYSzx7AJpJzN6ukKzrIR3t0eeT+o9cPxalQSLAUWMBDTgYeB2YltF7AzqV8EPAjMSWzvA+8m9XrgUWBmYtsNvM3IWAi0xfKTwCvAkUGsZKizs85kwBvqTCtGpBH4ApgbtR0FHKS4GKinPKIHgMXAWQDUHVHlL+oSR7dm8kzrLV8BWjI76tFovKcATo42vRN9fi2zlYAr4lAdmeh58j9wPOb9G1ApJ0fGC7VZYbIL6ceUkKJhSkjRUDQhNwFvEkLBOcIJY6i0PvIXAa0AdRPs6HCoAbYCG8fYbjbwKnBhUYRsoSzia+At4Bhwukq7NmAZsJbkRNmU03HjzsSH58bYdk1s11uENdIa8y8pz/1G4G7CmhkJZ2Jem/fUmgXcHMubYz4f2A80xPr9wLPVOsp7RGYk5YMx30hZBMCG0XSUt5ChLnAnq9SHRN5CTgLdsdwS86eAvbH8J3DXaDrKW0gP5Y8PrcDlQBdh3VxGuH4fGk1HeQsBeAQ4RRCxj7DYAX4Dequ0vTTm/+S9awH8AawDtgPzgB8JQbGD6kJWx/zzIgTELF1n+AAyVvyuNhZhRDJ8RRiRlUATIcYMhyXAVcA3wAqgq0hCMnwS00jYRhBygrA5FGKxjwumhBQNU0KKhhLwdyxPy9ORMSL7wtiXGUqE3wgQ9uPJguUxP5wZ6gj3403AWsKo7KTY/0eagatjfXv2oEa9ANhDiJaTCY8RBgCg/x9iLeGqeStBbREjPoRj/wHgRWBH+uBfWx/JBfyP2dwAAAAASUVORK5CYII=" />
+                            </defs>
+                        </svg>
+                    </h3>
+                    <p>
+                        Purchase Solana (SOL) tokens from a cryptocurrency exchange like Binance, Coinbase, or Kraken.
+                        Transfer the SOL tokens to your Solana wallet address.
+                    </p>
+                </li>
+
+                <li>
+                    <h3>
+                        <span>Swap for $NODE</span>
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <rect x="0.236938" width="34.4846" height="35" fill="url(#pattern0_79_36)" />
+                            <defs>
+                                <pattern id="pattern0_79_36" patternContentUnits="objectBoundingBox" width="1"
+                                    height="1">
+                                    <use xlink:href="#image0_79_36"
+                                        transform="matrix(0.0202989 0 0 0.02 -0.00747284 0)" />
+                                </pattern>
+                                <image id="image0_79_36" width="50" height="50"
+                                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFO0lEQVRogd2aW2xVRRSG/1NbvCC0aoGaEFooIPhQuURUEGNMNGIC8uAdNUqIFrwUH0zARFsDxMYYL1GwVRPefTIhRNtoMPpgS7g0eKkItjUapIigosil8PkwPbD29OztObNPa+JKJln7zJp/rX9mz23tkwH0f5DSYcKcImmOpIu8ul8l/SBpz3A4TSsZuaCXSLpN0jxJJXm065DULukDSbtTRwGElnJgDdBJetkPLAcqQuPJBMyREkkrJb0o6YoYm5OSeiUd9H4fI6lOUllMuz5Jr0p6s9CgCmU+E+iI6dVtwHPAVcCYBIwyYBbQALTHYO0FagqJrRASK4DTnsOjQDNQFfpKDAbcAhzysM8AzxSbSFOOXmsBxqcgkItQaw4/64tF5C0P+CBwUxEJ+GU+0Ov53JiWyAYPsIt0r1G+pRr4yvP9UiiRlR7Q58CFI0AiW0YBH3oxrCiUyGTgrAH4ZoRJWDJdJo5TwIxCiOw1jXtxQx0azKPAg0AmsH0VcMDE0wGU5EPkSaKyIAWJRwxOQwqchV5MQ5Zlv8FlRFeMd1I4F9BosDanxLKr52HcESmWyHJj/AsF7q6mVABLgZ0G7ztgGcm7flKpxG3AWVmbRGSfMWwJdLgUOEK89AL3BGLb7aATM++s0RzPYchoLCK62sXJWdwCUCj+BA9nbrbO3hvuNPrHgyfRQmWT3P1Eko5Lel3SE5KelvSepNODdRlJ6wLw+yV9ap6XnNMM2y8M04aA3pru9dbMHDYzPJtpAX7WmPYd2d+tgZVZAQ7mmfYHEuy6jV3I0j7VtD8DlFoi15jKU4Tt4pUGYwCYFGN3N7Abt5yGTPjRwHHja5olsthU7Ah0IGCXwekBbkmBlVTsgfI+OD/Z7ZX1WMAkzEqz0SdL+kTSfkmrJc1IgetLt9HHSfllOwqR9yU1eb/VSnpt0PlWuYxLWvnL6OVS8YlILilxraSPctTdIWmnpMaUPjK+PhxEJGmHpEWSrpb0gqQer75J0r0p8C83+h/SeSInTEVVCge+dMttfLWSbpZLEWVlbQrc8Ub/XtK5VctuZn8DlwauJu8Ce4CHY+onEs3EjAvwUQacMBh1mOW3FLe5ZGV6gAO7IfYk2P1o7OYH+JlFVIRZfgckbTfDdVfAcB82+mTlXm6nSpponv8M8LPA6B1ZxU72dqPfGuCgR9GDZpekVkn1kh6TW4J3mfo+hWXlFxu97ZxmhmyuN2RXBgz7MvKXuHmUVGo8jNnZOmuUIZpZbw5wJOB+oC+BwNFBmxDsjQZnn63zDdd6DkNTomOBh4hedXuBBwj/dFAN9Bu85UlEyoleU98OdJotjQZrc0qsFq9TIh3i7+y/S3rePNdLWhgwIbPyk9G7UuBcL+lx8/yKpN8iFjmYX0D0G8jPhOd7S3G5radSjEQ10Tn3bS67uMYzcResrHTx36RMy4AvTRxniEmKJIHUE5XPcLnYkSIxCtjqxbA6zv7fwBo9oK9JlwfOt0zAXYetrEtqkw+o/6GnF7hhGEncSDRpDXnc7/MFX89QaaW4o1MJvMzQBF/iB55CiQg3Z3wnh4BNhOeIhdt0NxDN64JbbOrzxSnUaQ3RvJSVNmAV7phdloBxCVCLS7Rti8HqJHeCL7aE/GFAklZJelZSTUz9SbmTbb+kI5LOShotd/WdIunimHZH5W6Ubwy2yV9SvBIVuPOOzeCHynbcOa88NJ7QEfFltlwS/HZJ1+XTf3IXuTZJW+QyK6kCKRYRX+okTZJLOoyVe02Oyb1qu+SSEAPFdDhcREZc/gHCiCzJLQhlwgAAAABJRU5ErkJggg==" />
+                            </defs>
+                        </svg>
+
+                    </h3>
+                    <p>
+                        Select the SOL token and enter the amount you wish to swap. Search for the $NODE token in the
+                        token list. Confirm the transaction details and approve the swap. Wait for the transaction to be
+                        processed on the Solana network.
+                    </p>
+                </li>
+
+            </ol>
+
+            <a href="javascript:void(0)" class="buy__btn">Buy token</a>
+
+            <img src="public/img/home/home_img.png" alt="" class="buy__img" width="1317" height="538" loading="lazy">
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__container">
+
+            <div>
+                <h2 class="footer__title">Node for Solana</h2>
+                <ol class="footer__navigation">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#specification">Specification</a></li>
+                </ol>
+            </div>
+
+            <div class="footer__socials">
+                <h3>Media Links</h3>
+                <a href="javascript:void(0)">Twitter</a>
+                <a href="javascript:void(0)">Telegram</a>
+            </div>
+
+            <div class="footer__buy">
+                <h3>How to buy</h3>
+                <a href="javascript:void(0)">Dextols</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <div class="tooltip">
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.83333 2.33333H14.9275C16.2283 2.33333 16.6997 2.46867 17.1745 2.723C17.6493 2.97733 18.0227 3.35067 18.277 3.8255C18.5313 4.30033 18.6667 4.77167 18.6667 6.0725V15.1667C18.6667 15.4761 18.7896 15.7728 19.0084 15.9916C19.2272 16.2104 19.5239 16.3333 19.8333 16.3333C20.1428 16.3333 20.4395 16.2104 20.6583 15.9916C20.8771 15.7728 21 15.4761 21 15.1667V5.98267C21 3.9025 20.783 3.14767 20.377 2.387C19.9792 1.63544 19.3646 1.02084 18.613 0.623C17.8523 0.217 17.0975 0 15.0173 0H5.83333C5.52391 0 5.22717 0.122916 5.00838 0.341709C4.78958 0.560501 4.66667 0.857247 4.66667 1.16667C4.66667 1.47609 4.78958 1.77283 5.00838 1.99162C5.22717 2.21042 5.52391 2.33333 5.83333 2.33333ZM14.8412 5.05633C14.3663 4.802 13.895 4.66667 12.5942 4.66667H3.73917C2.43833 4.66667 1.967 4.802 1.49217 5.05633C1.02245 5.30499 0.638327 5.68911 0.389667 6.15883C0.135333 6.63367 0 7.105 0 8.40583V17.2608C0 18.5605 0.135333 19.033 0.389667 19.5078C0.644 19.9827 1.01733 20.356 1.49217 20.6103C1.967 20.8647 2.43833 21 3.73917 21H12.5942C13.8938 21 14.3663 20.8647 14.8412 20.6103C15.316 20.356 15.6893 19.9827 15.9437 19.5078C16.198 19.033 16.3333 18.5617 16.3333 17.2608V8.40583C16.3333 7.105 16.198 6.63367 15.9437 6.15883C15.695 5.68911 15.3109 5.30499 14.8412 5.05633Z"
+                fill="#060606" />
+        </svg>
+        <span>Copied</span>
+    </div>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
