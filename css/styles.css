@@ -424,6 +424,7 @@ body {
   .home__links a {
     width: 87px;
     height: 27px;
+    border-width: 1px;
     font-family: var(--second-family-bold);
     font-size: 12px;
   }
@@ -653,17 +654,11 @@ body {
   }
 }
 
-.spec__list::-webkit-scrollbar {
-  display: none;
-}
-
 .spec__list {
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 86px;
   column-gap: 260px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 @media screen and (max-width: 1079px) {
   .spec__list {
@@ -677,12 +672,6 @@ body {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(6px);
-  }
-}
-@media screen and (max-width: 768px) {
-  .spec__list {
-    max-height: 240px;
-    overflow: scroll;
   }
 }
 .spec__list li {
@@ -799,6 +788,11 @@ body {
   left: 50%;
   translate: -50% 0;
   z-index: -1;
+}
+@media screen and (max-width: 1079px) {
+  .spec__img {
+    bottom: -22px;
+  }
 }
 @media screen and (max-width: 768px) {
   .spec__img {
